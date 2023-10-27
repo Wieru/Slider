@@ -9,11 +9,23 @@
 <body>
     <main class="slider">
         <section class="slider__container">
-            <button class="slider__button slider__button--prev">prev</button>
-            <figure class="slide"></figure>
-            <button class="slider__button slider__button--next">next</button>
+            <button class="slider__button slider__button--prev" data-button-prev>prev</button>
+            <figure class="slide" data-slide></figure>
+            <button class="slider__button slider__button--next" data-button-next>next</button>
         </section>
     </main>
     <script src="./js/index.js"></script>
+    <script>
+        const imageArr = [
+            './images/1.jpg',
+            './images/2.jpg',
+            './images/3.jpg',
+            './images/4.jpg',
+            './images/5.jpg',
+        ]
+        
+        const slider = new Slider(imageArr);
+        slider.initializeSlider();
+    </script>
 </body>
 </html>
