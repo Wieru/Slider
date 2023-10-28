@@ -19,6 +19,7 @@ class Slider {
         this.nextBtn = document.querySelector(this.UiSelectors.buttonNext);
 
         this.image = document.createElement('img');
+        this.image.classList.add('slide__image');
         this.image.setAttribute('src', this.images[0]);
 
         this.slide.appendChild(this.image);
