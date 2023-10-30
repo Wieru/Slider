@@ -35,6 +35,12 @@ body {
     transition: background-color 0.1s ease-in;
 }
 
+.slider__button:disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+}
+
 .slider__button:hover {
     background-color: #374094;
 }
