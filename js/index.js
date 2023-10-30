@@ -7,6 +7,7 @@ class Slider {
         this.image = null;
         this.currentSlide = 0;
         this.slideArrayLenght = 0;
+        this.slideCaption = null;
 
         this.UiSelectors = {
             slide: '[data-slide]',
@@ -25,11 +26,18 @@ class Slider {
 
         this.setSlideAttributes(0);
         
-        this.slideArrayLenght = this.images && this.images.length
+        this.slideArrayLenght = this.images && this.images.length;
 
         this.slide.appendChild(this.image);
-        this.disableButtons()
-        this.addListeners()
+
+        this.slideCaption = document.createElement('figcaption');
+        this.addCaption();
+        this.slideCaption.classList.add('slide__caption');
+        this.slide.appendChild(this.slideCaption);
+
+        
+        this.disableButtons();
+        this.addListeners();
     }
 
     addListeners() {
@@ -39,6 +47,14 @@ class Slider {
         this.nextBtn.addEventListener('click', () => 
         this.changeSlide(this.currentSlide + 1),
         );
+
+        document.addEventListener('keydown', (e) => {
+            if(e.keyCode === 37) {
+                this.changeSlide(this.currentSlide - 1)
+            } else if (e.keyCode === 39) {
+                this.changeSlide(this.currentSlide + 1)
+            }        
+        })
     }
 
     disableButtons() {
@@ -51,10 +67,17 @@ class Slider {
     }
 
     changeSlide(index) {
+        if(index === -1 || index === this.slideArrayLenght) return;
         this.currentSlide = index;
+
+        this.addCaption();
 
         this.setSlideAttributes(index);
         this.disableButtons();
+    }
+
+    addCaption() {
+        this.slideCaption.innerText = `${this.currentSlide + 1}/${this.slideArrayLenght}`;
     }
 
     setSlideAttributes(index) {
